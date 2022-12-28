@@ -1,0 +1,32 @@
+﻿@model Author;
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit Author";
+}
+
+<h4>Author Details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label">Full Name </label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <br />
+            <select class="form-select" aria-label="Default select example">
+                <option hidden>Books of the Author</option>
+                @{
+                    for (int i = 0; i < Model.BooksTitles.Count; i++)
+                    {
+                        <option value="1">@Model.BooksTitles[i]</option>
+                    }
+                }
+            </select>
+           <br />
+           <input type="submit" class="btn btn-outline-success" value="Submit" asp-action="Edit">
+        </form>
+    </div>
+</div>
