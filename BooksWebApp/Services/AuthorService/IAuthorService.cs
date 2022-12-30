@@ -6,7 +6,8 @@ namespace BooksWebApp.Services.AuthorService
     {
         Task<List<Authors>> GetAuthorsAsync();
         Task<Author> GetAuthorAsync(int id);
+        Task AddAuthorAsync(AuthorWithoutId author);
         Task DeleteBookByIdAsync(int id);
-        Task UpdateBookAsync(Author book);
+        Task UpdateBookAsync(int id, AuthorWithoutId author);
     }
 }

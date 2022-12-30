@@ -37,8 +37,31 @@ namespace BooksWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Author author)
         {
-            await _authorService.UpdateBookAsync(author);
+            AuthorWithoutId _authorWithoutId = new()
+            {
+                FullName = author.FullName,
+            };
+            await _authorService.UpdateBookAsync(author.Id, _authorWithoutId);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(AuthorWithoutId author)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(author);
+            }
+            await _authorService.AddAuthorAsync(author);
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }

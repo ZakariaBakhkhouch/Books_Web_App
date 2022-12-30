@@ -57,6 +57,29 @@ namespace BooksWebApp.Services.AuthorService
             }
         }
 
+        public async Task AddAuthorAsync(AuthorWithoutId author)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseURL);
+
+                // Serialize the book object into a JSON string
+                string json = JsonConvert.SerializeObject(author);
+
+                // Create a StringContent object with the JSON string
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                // Make a POST request to the API
+                HttpResponseMessage response = await client.PostAsync("Authors", content);
+
+                // Read the response as a string
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                // Deserialize the JSON string into a Book object
+                Book addedBook = JsonConvert.DeserializeObject<Book>(responseString);
+            }
+        }
+
         public async Task DeleteBookByIdAsync(int id)
         {
             using (HttpClient client = new HttpClient())
@@ -72,7 +95,7 @@ namespace BooksWebApp.Services.AuthorService
             }
         }
 
-        public async Task UpdateBookAsync(Author author)
+        public async Task UpdateBookAsync(int id, AuthorWithoutId author)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -83,13 +106,14 @@ namespace BooksWebApp.Services.AuthorService
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 // Make a PUT request to the API
-                HttpResponseMessage response = await client.PutAsync($"Authors/{author.Id}", content);
+                client.BaseAddress = new Uri(baseURL);
+                HttpResponseMessage response = await client.PutAsync($"Authors/{id}", content);
 
                 // Read the response as a string
                 string responseString = await response.Content.ReadAsStringAsync();
 
                 // Deserialize the JSON string into a Book object
-                Book updatedBook = JsonConvert.DeserializeObject<Book>(responseString);
+                Authors updatedBook = JsonConvert.DeserializeObject<Authors>(responseString);
             }
         }
     }

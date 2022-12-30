@@ -9,6 +9,10 @@ namespace BooksWebApp.Models
         [JsonProperty("fullName")] public string FullName { get; set; }
         [JsonProperty("bookTitles")] public List<string> BooksTitles { get; set; }
     }
+    public class AuthorWithoutId
+    {
+        [JsonProperty("fullName")] public string FullName { get; set; }
+    }
 
     public class Authors
     {
