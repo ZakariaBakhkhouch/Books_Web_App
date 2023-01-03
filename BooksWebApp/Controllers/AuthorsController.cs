@@ -41,7 +41,7 @@ namespace BooksWebApp.Controllers
             {
                 FullName = author.FullName,
             };
-            await _authorService.UpdateBookAsync(author.Id, _authorWithoutId);
+            await _authorService.UpdateAuthorAsync(author.Id, _authorWithoutId);
             return RedirectToAction(nameof(Index));
         }
 
@@ -61,7 +61,6 @@ namespace BooksWebApp.Controllers
             await _authorService.AddAuthorAsync(author);
             return RedirectToAction(nameof(Index));
         }
-
 
     }
 }

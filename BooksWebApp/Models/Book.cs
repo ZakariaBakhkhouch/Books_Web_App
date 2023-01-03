@@ -5,29 +5,50 @@ namespace BooksWebApp.Models
 {
     public class Book
     {
-        public int Id { get; set; }
+        [JsonPropertyName("Id")] public int Id { get; set; }
 
-        public string Title { get; set; }
+        [JsonPropertyName("title")] public string? Title { get; set; }
 
-        public string Descriprtion { get; set; }
+        [JsonPropertyName("description")] public string? Description { get; set; }
 
-        public bool IsRead { get; set; }
+        [JsonPropertyName("isRead")] public bool? IsRead { get; set; }
 
-        public DateTime? DateRead { get; set; }
+        [JsonPropertyName("dateRead")] public DateTime? DateRead { get; set; }
 
-        public int? Rate { get; set; }
+        [JsonPropertyName("rate")] public int? Rate { get; set; }
 
-        public string Gender { get; set; }
+        [JsonPropertyName("genre")] public string? Genre { get; set; }
 
-        public string CoverUrl { get; set; }
+        [JsonPropertyName("coverURL")] public string? CoverUrl { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        [JsonPropertyName("dateAdded")] public DateTime? DateAdded { get; set; }
 
-        // ---------------------- navigation properties ----------------------
-        //public int? PublisherId { get; set; }
+        [JsonPropertyName("publisherId")]  public int? PublisherId { get; set; }
 
-        //public Publisher Publisher { get; set; }
+    }
+    
+    public class BookWithAuthors
+    {
+        [JsonPropertyName("Id")] public int Id { get; set; }
 
-        //public List<Book_Author> Book_Authors { get; set; }
+        [JsonPropertyName("title")] public string? Title { get; set; }
+
+        [JsonPropertyName("description")] public string? Description { get; set; }
+
+        [JsonPropertyName("isRead")] public bool? IsRead { get; set; }
+
+        [JsonPropertyName("dateRead")] public DateTime? DateRead { get; set; }
+
+        [JsonPropertyName("rate")] public int? Rate { get; set; }
+
+        [JsonPropertyName("genre")] public string? Genre { get; set; }
+
+        [JsonPropertyName("coverURL")] public string? CoverUrl { get; set; }
+
+        [JsonPropertyName("dateAdded")] public DateTime? DateAdded { get; set; }
+
+        [JsonPropertyName("publisherId")]  public int? PublisherId { get; set; }
+
+        [JsonPropertyName("authors")] public List<int> Authors { get; set; }
     }
 }
