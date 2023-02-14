@@ -7,8 +7,6 @@
 <h1>List of Books :</h1>
 <div class="table-responsive">
     <br />
-
-    <br />
     <a asp-action="Create" class="btn btn-primary">Add New Book</a>
     <br />
     <br />
@@ -38,8 +36,15 @@
                     <td>@item.DateRead</td>
                     <td>@item.Rate</td>
                     <td>@item.PublisherId</td>
+                    @*@if(User.Identity.IsAuthenticated == true && User.IsInRole(UserRoles.Admin))
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                        </td>
+                    }*@
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Edit"   asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
                         <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

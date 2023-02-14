@@ -3,7 +3,7 @@ namespace BooksWebApp.Services.AuthorService
 {
     public class AuthorService : IAuthorService
     {
-        static string baseURL = "https://localhost:44312/api/";
+        static string baseURL = "https://books-web-api.azurewebsites.net/api/";
         private readonly HttpClient _client;
 
         public AuthorService(HttpClient client)

@@ -1,18 +1,28 @@
 ﻿
+using BooksWebApp.Helpers;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Options;
+using System.Net.Http;
+
 namespace BooksWebApp.Services.BookService
 {
     public class BookService : IBookService
     {
-        static string baseURL = "https://localhost:44312/api/";
+        static string? baseURL, Token;
         private readonly HttpClient _client;
+        private readonly Settings settings;
 
-        public BookService(HttpClient client)
+        public BookService(HttpClient client, IOptions<Settings> option)
         {
-            _client= client;
+            settings = option.Value;
+            baseURL = settings.ApiBaseUrl;
+            Token = settings.Token;
+            _client = client;
             _client = new HttpClient { BaseAddress = new Uri(baseURL) };
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _client.Timeout = TimeSpan.FromMinutes(6);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
         }
 
         public async Task<List<Book>> GetBooksAsync()

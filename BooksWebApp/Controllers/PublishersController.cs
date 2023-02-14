@@ -1,9 +1,11 @@
-﻿using BooksWebApp.Models;
+﻿using BooksWebApp.Helpers;
 using BooksWebApp.Services.PublisherService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksWebApp.Controllers
 {
+    [Authorize(Roles = Constants.UserRoles.Admin)]
     public class PublishersController : Controller
     {
         private readonly IPublisherService _publisherService;
@@ -13,6 +15,7 @@ namespace BooksWebApp.Controllers
             _publisherService= publisherService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -20,6 +23,7 @@ namespace BooksWebApp.Controllers
             return View(publishers);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
