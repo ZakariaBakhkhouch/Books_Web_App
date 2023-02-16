@@ -8,9 +8,7 @@ namespace BooksWebApp.Models
 
         [JsonPropertyName("isAuthenticated")] public bool IsAuthenticated { get; set; }
 
-        [JsonPropertyName("userName")] public string? Username { get; set; }
-
-        [JsonPropertyName("email")] public string? Email { get; set; }
+        [JsonPropertyName("email")] public string? Email { get; set; }    
 
         [JsonPropertyName("roles")] public List<string>? Roles { get; set; }
 

@@ -9,12 +9,13 @@ namespace BooksWebApp.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        //private readonly SignInManager<ApplicationUser> _signInManager;
         public readonly Settings settings;
 
-        public AccountController(IAccountService accountService, 
-            IOptions<Settings> settings)
+        public AccountController(IAccountService accountService, IOptions<Settings> settings)
         {
             _accountService = accountService;
+            //_signInManager = signInManager;
             this.settings = settings.Value;
         }
 

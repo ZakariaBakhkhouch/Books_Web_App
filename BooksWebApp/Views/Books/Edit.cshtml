@@ -30,22 +30,6 @@
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="IsRead" class="control-label">Is Read :</label>
-                <select asp-for="IsRead" class="form-select" required  oninvalid="this.setCustomValidity('IsRead is required')" oninput="this.setCustomValidity('')">
-                     <option value="" disabled hidden selected >Did you read it?</option>
-                     <option value="false" >No</option>
-                     <option value="true" >Yes</option>
-                </select>           
-                <span asp-validation-for="IsRead" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group">
-                <label asp-for="DateRead" class="control-label">Date Read :</label>
-                <input asp-for="DateRead" type="date" class="form-control" required oninvalid="this.setCustomValidity('Date Read is required')" oninput="this.setCustomValidity('')" />
-                <span asp-validation-for="DateRead" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group">
                 <label asp-for="DateAdded" class="control-label">Date Added :</label>
                 <input asp-for="DateAdded" type="date" class="form-control" required oninvalid="this.setCustomValidity('Date Added is required')" oninput="this.setCustomValidity('')" />
                 <span asp-validation-for="DateAdded" class="text-danger"></span>
@@ -55,12 +39,6 @@
                 <label asp-for="Rate" class="control-label">Rate :</label>
                 <input asp-for="Rate" type="number" class="form-control" required oninvalid="this.setCustomValidity('Rate is required')" oninput="this.setCustomValidity('')" />
                 <span asp-validation-for="Rate" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group">
-                <label asp-for="CoverUrl" class="control-label">Cover URL :</label>
-                <input asp-for="CoverUrl" class="form-control" required oninvalid="this.setCustomValidity('Cover Url is required')" oninput="this.setCustomValidity('')" />
-                <span asp-validation-for="CoverUrl" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
@@ -74,7 +52,7 @@
                         }
                     }
                 </select>
-                <span asp-validation-for="IsRead" class="text-danger"></span>
+                <span asp-validation-for="PublisherId" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">

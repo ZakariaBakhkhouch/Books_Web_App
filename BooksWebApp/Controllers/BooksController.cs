@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BooksWebApp.Controllers
 {
-    [Authorize(Roles = Constants.UserRoles.Admin)]
+    [AllowAnonymous]
+    //[Authorize(Roles = Constants.UserRoles.Admin)]
     public class BooksController : Controller
     {
         private readonly IBookService _bookService;

@@ -30,19 +30,9 @@
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="IsRead" class="control-label">Is Read :</label>
-                <select asp-for="IsRead" class="form-select" required  oninvalid="this.setCustomValidity('IsRead is required')" oninput="this.setCustomValidity('')">
-                     <option value="" disabled hidden selected >Did you read it?</option>
-                     <option value="false" >No</option>
-                     <option value="true" >Yes</option>
-                </select>           
-                <span asp-validation-for="IsRead" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group">
-                <label asp-for="DateRead" class="control-label">Date Read :</label>
-                <input asp-for="DateRead" type="date" class="form-control" required oninvalid="this.setCustomValidity('Date Read is required')" oninput="this.setCustomValidity('')" />
-                <span asp-validation-for="DateRead" class="text-danger"></span>
+                <label asp-for="Cover" class="control-label">Book Cover :</label>
+                <input asp-for="Cover" type="file" class="form-control" required/>         
+                <span asp-validation-for="Cover" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
@@ -58,28 +48,22 @@
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="CoverUrl" class="control-label">Cover URL :</label>
-                <input asp-for="CoverUrl" class="form-control" required oninvalid="this.setCustomValidity('Cover Url is required')" oninput="this.setCustomValidity('')" />
-                <span asp-validation-for="CoverUrl" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group">
                 <label asp-for="PublisherId" class="control-label">Publisher :</label>
-                <select asp-for="PublisherId" class="form-select" required oninvalid="this.setCustomValidity('Publisher is required')" oninput="this.setCustomValidity('')">
-                    <option value="" disabled hidden selected>Choose the Publisher</option>
+                <select class="form-select" multiple asp-for="PublisherId" required oninvalid="this.setCustomValidity('Publisher is required')" oninput="this.setCustomValidity('')">
+                    <option value="" disabled hidden selected>Choose the Author(s)</option>
                     @{
-                        foreach (Publisher author in ViewBag.Publishers)
+                        foreach (Publisher publisher in ViewBag.Publishers)
                         {
-                            <option value="@author.Id">@author.FullName</option>
+                            <option value="@publisher.Id">@publisher.FullName</option>
                         }
                     }
                 </select>
-                <span asp-validation-for="IsRead" class="text-danger"></span>
+                <span asp-validation-for="PublisherId" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
                 <label asp-for="Authors" class="control-label">Author(s) :</label>
-                <select class="form-select" multiple asp-for="Authors" required oninvalid="this.setCustomValidity('Author is required')" oninput="this.setCustomValidity('')">
+                <select class="form-select" multiple asp-for="Authors" required oninvalid="this.setCustomValidity('Author(s) is required')" oninput="this.setCustomValidity('')">
                     <option value="" disabled hidden selected>Choose the Author(s)</option>
                     @{
                         foreach (Authors author in ViewBag.Authors)
@@ -88,6 +72,7 @@
                         }
                     }
                 </select>
+                <span asp-validation-for="Authors" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">

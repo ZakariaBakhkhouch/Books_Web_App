@@ -43,7 +43,27 @@ namespace BooksWebApp.Services.BookService
 
         public async Task AddBookAsync(BookWithAuthors book)
         {
-            string json = JsonConvert.SerializeObject(book);
+            var stream = book.Cover.OpenReadStream();
+            byte[] cover;
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await stream.CopyToAsync(memoryStream);
+                cover = memoryStream.ToArray();
+            }
+
+            BookWithAuthorsWithCover _book = new()
+            {
+                Title = book.Title,
+                Description = book.Description,
+                Genre = book.Genre,
+                DateAdded = book.DateAdded,
+                Authors = book.Authors,
+                Rate = book.Rate,
+                PublisherId = book.PublisherId,
+                Cover = cover
+            };
+            string json = JsonConvert.SerializeObject(_book);
             // Create a StringContent object with the JSON string
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _client.PostAsync("Books", content);

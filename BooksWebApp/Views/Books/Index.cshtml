@@ -1,10 +1,10 @@
 ﻿@model IList<Book>;
 @{
-    Layout = "_Layout";
+    Layout = "_Layout1";
     ViewData["Title"] = "List of Books";
 }
 
-<h1>List of Books :</h1>
+<h1>List of Books :</h1>g
 <div class="table-responsive">
     <br />
     <a asp-action="Create" class="btn btn-primary">Add New Book</a>
@@ -17,9 +17,9 @@
                 <th>Title</th>
                 <th>Genre</th>
                 <th>Description</th>
-                <th>Date Addes</th>
-                <th>Date Read</th>
+                <th>Date Added</th>
                 <th>Rate</th>
+                <th>Book Cover</th>
                 <th>Publisher Id</th>
                 <th>Actions</th>
             </tr>
@@ -33,10 +33,21 @@
                     <td>@item.Genre</td>
                     <td>@item.Description</td>
                     <td>@item.DateAdded</td>
-                    <td>@item.DateRead</td>
                     <td>@item.Rate</td>
+                    <td>
+                        @if (item.Cover != null)
+                        {
+                            <img id="bookCover" style="width:250px;height:250px; object-fit:cover"
+                            src="data:image/*;base64,@(Convert.ToBase64String(item.Cover))">
+                        }
+                        else
+                        {
+                            <img id="bookCover" style="width:150px;height:150px; object-fit:cover" src="">
+                        }
+                        
+                    </td>
                     <td>@item.PublisherId</td>
-                    @*@if(User.Identity.IsAuthenticated == true && User.IsInRole(UserRoles.Admin))
+                   @* @if(User.Identity.IsAuthenticated == true && User.IsInRole(UserRoles.Admin))
                     {
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
